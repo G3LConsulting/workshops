@@ -18,4 +18,16 @@ Ensure to include proper error handling and use appropriate HTTP status codes fo
 ```
 
 
+### SPEC KIT
+#### Constitution of a SPEC KIT
+```
+/speckit.constitution for a fullstack project. the front-end should be typescript react. the back-end the latest LTS of .net. 
+the backend uses EF Core, repositories and DI. all incomming REST calls should be validated
+the front end should use Tailwind UI Components.
+both front-end and backend should follow the current best practices
+```
+
+#### Specify
+
+```
 
