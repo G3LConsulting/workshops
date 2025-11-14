@@ -1,0 +1,263 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TaskApi</name>
+    </assembly>
+    <members>
+        <member name="T:TaskApi.Controllers.TasksController">
+            <summary>
+            Controller for managing tasks
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.GetTasks(System.Nullable{TaskApi.Models.TaskStatus},System.Int32,System.Int32)">
+            <summary>
+            Retrieves a paginated list of all tasks with optional filtering by status
+            </summary>
+            <param name="status">Optional filter by task status (Pending, InProgress, Completed)</param>
+            <param name="pageNumber">Page number (default: 1)</param>
+            <param name="pageSize">Number of items per page (default: 10, max: 100)</param>
+            <returns>A paginated list of tasks</returns>
+            <response code="200">Returns the paginated list of tasks</response>
+            <response code="400">If the pagination parameters are invalid</response>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.GetTask(System.Int32)">
+            <summary>
+            Retrieves a specific task by its ID
+            </summary>
+            <param name="id">The task ID</param>
+            <returns>The requested task</returns>
+            <response code="200">Returns the requested task</response>
+            <response code="404">If the task is not found</response>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.CreateTask(TaskApi.Models.DTOs.CreateTaskDto)">
+            <summary>
+            Creates a new task
+            </summary>
+            <param name="createTaskDto">The task creation data</param>
+            <returns>The newly created task</returns>
+            <response code="201">Returns the newly created task</response>
+            <response code="400">If the request data is invalid</response>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.UpdateTask(System.Int32,TaskApi.Models.DTOs.UpdateTaskDto)">
+            <summary>
+            Updates an existing task by its ID
+            </summary>
+            <param name="id">The task ID</param>
+            <param name="updateTaskDto">The task update data</param>
+            <returns>The updated task</returns>
+            <response code="200">Returns the updated task</response>
+            <response code="400">If the request data is invalid</response>
+            <response code="404">If the task is not found</response>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.DeleteTask(System.Int32)">
+            <summary>
+            Deletes a task by its ID
+            </summary>
+            <param name="id">The task ID</param>
+            <returns>No content</returns>
+            <response code="204">If the task was successfully deleted</response>
+            <response code="404">If the task is not found</response>
+        </member>
+        <member name="T:TaskApi.Data.TaskDbContext">
+            <summary>
+            Database context for the Task Management API
+            </summary>
+        </member>
+        <member name="P:TaskApi.Data.TaskDbContext.Tasks">
+            <summary>
+            DbSet for TaskItem entities
+            </summary>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.CreateTaskDto">
+            <summary>
+            Data transfer object for creating a new task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.Title">
+            <summary>
+            Title of the task
+            </summary>
+            <example>Complete project documentation</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.Description">
+            <summary>
+            Detailed description of the task
+            </summary>
+            <example>Write comprehensive API documentation including all endpoints and examples</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.DueDate">
+            <summary>
+            Due date for the task
+            </summary>
+            <example>2025-12-31T23:59:59Z</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.Status">
+            <summary>
+            Initial status of the task (defaults to Pending if not specified)
+            </summary>
+            <example>Pending</example>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.PaginatedResponse`1">
+            <summary>
+            Paginated response wrapper for task lists
+            </summary>
+            <typeparam name="T">Type of items in the response</typeparam>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.Items">
+            <summary>
+            List of items for the current page
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.PageNumber">
+            <summary>
+            Current page number (1-indexed)
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.PageSize">
+            <summary>
+            Number of items per page
+            </summary>
+            <example>10</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.TotalCount">
+            <summary>
+            Total number of items across all pages
+            </summary>
+            <example>45</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.TotalPages">
+            <summary>
+            Total number of pages
+            </summary>
+            <example>5</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.HasPreviousPage">
+            <summary>
+            Indicates if there is a previous page
+            </summary>
+            <example>false</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.PaginatedResponse`1.HasNextPage">
+            <summary>
+            Indicates if there is a next page
+            </summary>
+            <example>true</example>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.TaskResponseDto">
+            <summary>
+            Data transfer object for task responses
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskResponseDto.Id">
+            <summary>
+            Unique identifier for the task
+            </summary>
+            <example>1</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskResponseDto.Title">
+            <summary>
+            Title of the task
+            </summary>
+            <example>Complete project documentation</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskResponseDto.Description">
+            <summary>
+            Detailed description of the task
+            </summary>
+            <example>Write comprehensive API documentation including all endpoints and examples</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskResponseDto.DueDate">
+            <summary>
+            Due date for the task
+            </summary>
+            <example>2025-12-31T23:59:59Z</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskResponseDto.CreationDate">
+            <summary>
+            Date when the task was created
+            </summary>
+            <example>2025-11-14T10:30:00Z</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskResponseDto.Status">
+            <summary>
+            Current status of the task
+            </summary>
+            <example>Pending</example>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.UpdateTaskDto">
+            <summary>
+            Data transfer object for updating an existing task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Title">
+            <summary>
+            Title of the task
+            </summary>
+            <example>Complete project documentation - Updated</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Description">
+            <summary>
+            Detailed description of the task
+            </summary>
+            <example>Updated: Write comprehensive API documentation including all endpoints and examples</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.DueDate">
+            <summary>
+            Due date for the task
+            </summary>
+            <example>2025-12-31T23:59:59Z</example>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Status">
+            <summary>
+            Updated status of the task
+            </summary>
+            <example>InProgress</example>
+        </member>
+        <member name="T:TaskApi.Models.TaskItem">
+            <summary>
+            Represents a task in the task management system
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.TaskItem.Id">
+            <summary>
+            Unique identifier for the task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.TaskItem.Title">
+            <summary>
+            Title of the task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.TaskItem.Description">
+            <summary>
+            Detailed description of the task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.TaskItem.DueDate">
+            <summary>
+            Due date for the task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.TaskItem.CreationDate">
+            <summary>
+            Date when the task was created
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.TaskItem.Status">
+            <summary>
+            Current status of the task
+            </summary>
+        </member>
+        <member name="T:TaskApi.Models.TaskStatus">
+            <summary>
+            Enum representing the possible statuses of a task
+            </summary>
+        </member>
+        <member name="T:EnumSchemaFilter">
+            <summary>
+            Schema filter to add enum value descriptions to OpenAPI documentation
+            </summary>
+        </member>
+    </members>
+</doc>
