@@ -100,6 +100,40 @@ namespace TaskApi.Controllers
             return Ok(MapToDto(updated));
         }
 
+        /// <summary>
+        /// Mark a task as complete
+        /// </summary>
+        [HttpPatch("{id}/complete")]
+        [ProducesResponseType(typeof(TaskDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<TaskDto>> MarkComplete(Guid id)
+        {
+            var task = await _repository.GetByIdAsync(id);
+            if (task == null)
+                return NotFound(new { detail = $"Task with id '{id}' was not found" });
+
+            task.IsComplete = true;
+            var updated = await _repository.UpdateAsync(task);
+            return Ok(MapToDto(updated));
+        }
+
+        /// <summary>
+        /// Mark a task as incomplete
+        /// </summary>
+        [HttpPatch("{id}/incomplete")]
+        [ProducesResponseType(typeof(TaskDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<TaskDto>> MarkIncomplete(Guid id)
+        {
+            var task = await _repository.GetByIdAsync(id);
+            if (task == null)
+                return NotFound(new { detail = $"Task with id '{id}' was not found" });
+
+            task.IsComplete = false;
+            var updated = await _repository.UpdateAsync(task);
+            return Ok(MapToDto(updated));
+        }
+
         private static TaskDto MapToDto(TaskEntity entity) => new TaskDto
         {
             Id = entity.Id,

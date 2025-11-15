@@ -24,6 +24,16 @@
             Update an existing task
             </summary>
         </member>
+        <member name="M:TaskApi.Controllers.TasksController.MarkComplete(System.Guid)">
+            <summary>
+            Mark a task as complete
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.MarkIncomplete(System.Guid)">
+            <summary>
+            Mark a task as incomplete
+            </summary>
+        </member>
         <member name="T:TaskApi.Models.DTOs.CreateTaskDto">
             <summary>
             Input model for creating a new task
