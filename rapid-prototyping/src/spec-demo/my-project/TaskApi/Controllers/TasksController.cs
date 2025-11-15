@@ -134,6 +134,22 @@ namespace TaskApi.Controllers
             return Ok(MapToDto(updated));
         }
 
+        /// <summary>
+        /// Delete a task
+        /// </summary>
+        [HttpDelete("{id}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var existing = await _repository.GetByIdAsync(id);
+            if (existing == null)
+                return NotFound(new { detail = $"Task with id '{id}' was not found" });
+
+            await _repository.DeleteAsync(id);
+            return NoContent();
+        }
+
         private static TaskDto MapToDto(TaskEntity entity) => new TaskDto
         {
             Id = entity.Id,

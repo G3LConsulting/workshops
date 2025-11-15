@@ -34,6 +34,11 @@
             Mark a task as incomplete
             </summary>
         </member>
+        <member name="M:TaskApi.Controllers.TasksController.Delete(System.Guid)">
+            <summary>
+            Delete a task
+            </summary>
+        </member>
         <member name="T:TaskApi.Models.DTOs.CreateTaskDto">
             <summary>
             Input model for creating a new task
