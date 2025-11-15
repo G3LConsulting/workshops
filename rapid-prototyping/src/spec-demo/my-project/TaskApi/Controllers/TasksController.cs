@@ -57,6 +57,49 @@ namespace TaskApi.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
+        /// <summary>
+        /// Get a task by ID
+        /// </summary>
+        [HttpGet("{id}")]
+        [ProducesResponseType(typeof(TaskDto), 200)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<TaskDto>> GetById(Guid id)
+        {
+            var task = await _repository.GetByIdAsync(id);
+            if (task == null)
+                return NotFound(new { detail = $"Task with id '{id}' was not found" });
+
+            return Ok(MapToDto(task));
+        }
+
+        /// <summary>
+        /// Update an existing task
+        /// </summary>
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(TaskDto), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<TaskDto>> Update(Guid id, [FromBody] UpdateTaskDto dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.Title))
+            {
+                ModelState.AddModelError(nameof(dto.Title), "Title cannot be only whitespace");
+                return BadRequest(ModelState);
+            }
+
+            var existing = await _repository.GetByIdAsync(id);
+            if (existing == null)
+                return NotFound(new { detail = $"Task with id '{id}' was not found" });
+
+            existing.Title = dto.Title.Trim();
+            existing.Description = dto.Description?.Trim();
+            existing.DueDate = dto.DueDate;
+            existing.IsComplete = dto.IsComplete;
+
+            var updated = await _repository.UpdateAsync(existing);
+            return Ok(MapToDto(updated));
+        }
+
         private static TaskDto MapToDto(TaskEntity entity) => new TaskDto
         {
             Id = entity.Id,
@@ -67,11 +110,5 @@ namespace TaskApi.Controllers
             CreatedAt = entity.CreatedAt,
             UpdatedAt = entity.UpdatedAt
         };
-
-        // Placeholder for GetById (will be implemented in User Story 2)
-        private ActionResult<TaskDto> GetById(Guid id)
-        {
-            return NotFound();
-        }
     }
 }

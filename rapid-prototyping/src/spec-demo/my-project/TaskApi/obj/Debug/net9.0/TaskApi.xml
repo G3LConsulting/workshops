@@ -14,6 +14,16 @@
             Create a new task
             </summary>
         </member>
+        <member name="M:TaskApi.Controllers.TasksController.GetById(System.Guid)">
+            <summary>
+            Get a task by ID
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.Update(System.Guid,TaskApi.Models.DTOs.UpdateTaskDto)">
+            <summary>
+            Update an existing task
+            </summary>
+        </member>
         <member name="T:TaskApi.Models.DTOs.CreateTaskDto">
             <summary>
             Input model for creating a new task
@@ -72,6 +82,31 @@
         <member name="P:TaskApi.Models.DTOs.TaskDto.UpdatedAt">
             <summary>
             When the task was last updated (UTC)
+            </summary>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.UpdateTaskDto">
+            <summary>
+            Input model for updating an existing task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Title">
+            <summary>
+            Task title (required, 1-100 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Description">
+            <summary>
+            Detailed task description (optional, max 500 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.DueDate">
+            <summary>
+            Optional due date
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.IsComplete">
+            <summary>
+            Task completion status
             </summary>
         </member>
     </members>
