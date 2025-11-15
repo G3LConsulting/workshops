@@ -3,12 +3,20 @@
 
 # Get repository root, with fallback for non-git repositories
 get_repo_root() {
-    if git rev-parse --show-toplevel >/dev/null 2>&1; then
-        git rev-parse --show-toplevel
+    # Always use the .specify directory to find workspace root
+    # This ensures we use the correct workspace location even in monorepos
+    local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    
+    # Navigate up from .specify/scripts/bash/ to the workspace root (where .specify is)
+    local workspace_root
+    workspace_root="$(cd "$script_dir/../../.." && pwd)"
+    
+    # Verify .specify exists at this location
+    if [[ -d "$workspace_root/.specify" ]]; then
+        echo "$workspace_root"
     else
-        # Fall back to script location for non-git repos
-        local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-        (cd "$script_dir/../../.." && pwd)
+        echo "ERROR: Could not find workspace root with .specify directory" >&2
+        exit 1
     fi
 }
 

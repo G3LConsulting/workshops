@@ -15,7 +15,6 @@
 /Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/TaskApi.dll
 /Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/TaskApi.pdb
 /Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/TaskApi.xml
-/Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.dll
 /Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Abstractions.dll
 /Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.InMemory.dll

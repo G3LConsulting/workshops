@@ -1,0 +1,457 @@
+openapi: 3.0.3
+info:
+  title: Demo Task API
+  description: |
+    A simplified task management REST API demonstrating CRUD operations, input validation, 
+    and OpenAPI documentation for a 30-45 minute workshop exercise.
+    
+    This API provides complete task management functionality including:
+    - Create, read, update, and delete tasks
+    - Mark tasks as complete or incomplete
+    - Filter tasks by completion status
+    - Search tasks by title and description
+    
+    All DateTime values are in UTC. All requests are validated with detailed error responses.
+  version: 1.0.0
+  contact:
+    name: Workshop Demo
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+  - url: https://localhost:5001
+    description: Local development server (HTTPS)
+
+tags:
+  - name: Tasks
+    description: Task management operations
+
+paths:
+  /api/tasks:
+    get:
+      tags:
+        - Tasks
+      summary: Get all tasks
+      description: |
+        Retrieves all tasks with optional filtering by completion status and search text.
+        Tasks are returned sorted by creation date (newest first).
+      operationId: getAllTasks
+      parameters:
+        - name: status
+          in: query
+          description: Filter by completion status
+          required: false
+          schema:
+            type: string
+            enum: [all, complete, incomplete]
+            default: all
+        - name: search
+          in: query
+          description: Search text (case-insensitive, searches title and description)
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with array of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaskDto'
+              example:
+                - id: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                  title: "Complete workshop exercise"
+                  description: "Build a task API with AI assistance"
+                  dueDate: "2024-12-01T10:00:00Z"
+                  isComplete: false
+                  createdAt: "2024-11-14T09:00:00Z"
+                  updatedAt: "2024-11-14T09:00:00Z"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    
+    post:
+      tags:
+        - Tasks
+      summary: Create a new task
+      description: Creates a new task with auto-generated ID and timestamps
+      operationId: createTask
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskDto'
+            example:
+              title: "Complete workshop exercise"
+              description: "Build a task API with AI assistance"
+              dueDate: "2024-12-01T10:00:00Z"
+      responses:
+        '201':
+          description: Task created successfully
+          headers:
+            Location:
+              description: URI of the created task
+              schema:
+                type: string
+                example: /api/tasks/3fa85f64-5717-4562-b3fc-2c963f66afa6
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+              example:
+                type: "ValidationError"
+                title: "One or more validation errors occurred"
+                status: 400
+                errors:
+                  title: ["Title is required", "Title must be between 1 and 100 characters"]
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
+  /api/tasks/{id}:
+    get:
+      tags:
+        - Tasks
+      summary: Get a task by ID
+      description: Retrieves a single task by its unique identifier
+      operationId: getTaskById
+      parameters:
+        - name: id
+          in: path
+          description: Task ID (GUID)
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+      responses:
+        '200':
+          description: Successful response with task details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+              example:
+                type: "NotFound"
+                title: "Resource not found"
+                status: 404
+                detail: "Task with id '3fa85f64-5717-4562-b3fc-2c963f66afa6' was not found"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    
+    put:
+      tags:
+        - Tasks
+      summary: Update a task
+      description: Updates an existing task with new values
+      operationId: updateTask
+      parameters:
+        - name: id
+          in: path
+          description: Task ID (GUID)
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTaskDto'
+            example:
+              title: "Updated task title"
+              description: "Updated description"
+              dueDate: "2024-12-02T10:00:00Z"
+              isComplete: true
+      responses:
+        '200':
+          description: Task updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    
+    delete:
+      tags:
+        - Tasks
+      summary: Delete a task
+      description: Deletes a task by its unique identifier
+      operationId: deleteTask
+      parameters:
+        - name: id
+          in: path
+          description: Task ID (GUID)
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Task deleted successfully (no content)
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
+  /api/tasks/{id}/complete:
+    patch:
+      tags:
+        - Tasks
+      summary: Mark task as complete
+      description: Sets the IsComplete flag to true and updates the UpdatedAt timestamp
+      operationId: markTaskComplete
+      parameters:
+        - name: id
+          in: path
+          description: Task ID (GUID)
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Task marked as complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
+  /api/tasks/{id}/incomplete:
+    patch:
+      tags:
+        - Tasks
+      summary: Mark task as incomplete
+      description: Sets the IsComplete flag to false and updates the UpdatedAt timestamp
+      operationId: markTaskIncomplete
+      parameters:
+        - name: id
+          in: path
+          description: Task ID (GUID)
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Task marked as incomplete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskDto'
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+
+components:
+  schemas:
+    TaskDto:
+      type: object
+      description: Complete task representation for API responses
+      required:
+        - id
+        - title
+        - isComplete
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the task
+          example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Task title (1-100 characters)
+          example: "Complete workshop exercise"
+        description:
+          type: string
+          maxLength: 500
+          nullable: true
+          description: Detailed task description (optional, max 500 characters)
+          example: "Build a task API with AI assistance"
+        dueDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: Optional due date in UTC (ISO 8601 format)
+          example: "2024-12-01T10:00:00Z"
+        isComplete:
+          type: boolean
+          description: Whether the task is completed
+          example: false
+        createdAt:
+          type: string
+          format: date-time
+          description: When the task was created (UTC, ISO 8601 format)
+          example: "2024-11-14T09:00:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the task was last updated (UTC, ISO 8601 format)
+          example: "2024-11-14T09:00:00Z"
+
+    CreateTaskDto:
+      type: object
+      description: Input model for creating a new task
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Task title (required, 1-100 characters, cannot be only whitespace)
+          example: "Complete workshop exercise"
+        description:
+          type: string
+          maxLength: 500
+          nullable: true
+          description: Detailed task description (optional, max 500 characters)
+          example: "Build a task API with AI assistance"
+        dueDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: Optional due date (ISO 8601 format)
+          example: "2024-12-01T10:00:00Z"
+
+    UpdateTaskDto:
+      type: object
+      description: Input model for updating an existing task
+      required:
+        - title
+        - isComplete
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+          description: Task title (required, 1-100 characters, cannot be only whitespace)
+          example: "Updated task title"
+        description:
+          type: string
+          maxLength: 500
+          nullable: true
+          description: Detailed task description (optional, max 500 characters)
+          example: "Updated description"
+        dueDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: Optional due date (ISO 8601 format)
+          example: "2024-12-02T10:00:00Z"
+        isComplete:
+          type: boolean
+          description: Task completion status
+          example: true
+
+    ProblemDetails:
+      type: object
+      description: RFC 7807 Problem Details for HTTP APIs
+      properties:
+        type:
+          type: string
+          description: A URI reference that identifies the problem type
+          example: "NotFound"
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type
+          example: "Resource not found"
+        status:
+          type: integer
+          description: The HTTP status code
+          example: 404
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence
+          example: "Task with id '3fa85f64-5717-4562-b3fc-2c963f66afa6' was not found"
+
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+        - type: object
+          properties:
+            errors:
+              type: object
+              description: Validation errors organized by field name
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+              example:
+                title: ["Title is required", "Title must be between 1 and 100 characters"]
+                description: ["Description cannot exceed 500 characters"]
