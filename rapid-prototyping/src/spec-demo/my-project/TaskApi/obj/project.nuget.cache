@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "dgSpecHash": "Telh78u8Z+c=",
+  "success": true,
+  "projectFilePath": "/Users/gelootn/SourceCode/workshops/rapid-prototyping/src/spec-demo/my-project/TaskApi/TaskApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/gelootn/.nuget/packages/microsoft.entityframeworkcore/9.0.0/microsoft.entityframeworkcore.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.entityframeworkcore.abstractions/9.0.0/microsoft.entityframeworkcore.abstractions.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.entityframeworkcore.analyzers/9.0.0/microsoft.entityframeworkcore.analyzers.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.entityframeworkcore.inmemory/9.0.0/microsoft.entityframeworkcore.inmemory.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.apidescription.server/9.0.0/microsoft.extensions.apidescription.server.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.0/microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.caching.memory/9.0.0/microsoft.extensions.caching.memory.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.0/microsoft.extensions.dependencyinjection.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0/microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.logging/9.0.0/microsoft.extensions.logging.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.0/microsoft.extensions.logging.abstractions.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.options/9.0.0/microsoft.extensions.options.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.extensions.primitives/9.0.0/microsoft.extensions.primitives.9.0.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/microsoft.openapi/2.3.0/microsoft.openapi.2.3.0.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/swashbuckle.aspnetcore/10.0.1/swashbuckle.aspnetcore.10.0.1.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/swashbuckle.aspnetcore.swagger/10.0.1/swashbuckle.aspnetcore.swagger.10.0.1.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/swashbuckle.aspnetcore.swaggergen/10.0.1/swashbuckle.aspnetcore.swaggergen.10.0.1.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/swashbuckle.aspnetcore.swaggerui/10.0.1/swashbuckle.aspnetcore.swaggerui.10.0.1.nupkg.sha512",
+    "/Users/gelootn/.nuget/packages/system.text.json/8.0.5/system.text.json.8.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

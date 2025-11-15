@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TaskApi</name>
+    </assembly>
+    <members>
+        <member name="M:TaskApi.Controllers.TasksController.GetAll(System.String,System.String)">
+            <summary>
+            Get all tasks with optional filtering
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.Create(TaskApi.Models.DTOs.CreateTaskDto)">
+            <summary>
+            Create a new task
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.GetById(System.Guid)">
+            <summary>
+            Get a task by ID
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.Update(System.Guid,TaskApi.Models.DTOs.UpdateTaskDto)">
+            <summary>
+            Update an existing task
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.MarkComplete(System.Guid)">
+            <summary>
+            Mark a task as complete
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.MarkIncomplete(System.Guid)">
+            <summary>
+            Mark a task as incomplete
+            </summary>
+        </member>
+        <member name="M:TaskApi.Controllers.TasksController.Delete(System.Guid)">
+            <summary>
+            Delete a task
+            </summary>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.CreateTaskDto">
+            <summary>
+            Input model for creating a new task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.Title">
+            <summary>
+            Task title (required, 1-100 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.Description">
+            <summary>
+            Detailed task description (optional, max 500 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.CreateTaskDto.DueDate">
+            <summary>
+            Optional due date
+            </summary>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.TaskDto">
+            <summary>
+            Represents a task in API responses
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.Id">
+            <summary>
+            Unique identifier for the task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.Title">
+            <summary>
+            Task title (1-100 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.Description">
+            <summary>
+            Detailed task description (optional, max 500 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.DueDate">
+            <summary>
+            Optional due date in UTC
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.IsComplete">
+            <summary>
+            Whether the task is completed
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.CreatedAt">
+            <summary>
+            When the task was created (UTC)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.TaskDto.UpdatedAt">
+            <summary>
+            When the task was last updated (UTC)
+            </summary>
+        </member>
+        <member name="T:TaskApi.Models.DTOs.UpdateTaskDto">
+            <summary>
+            Input model for updating an existing task
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Title">
+            <summary>
+            Task title (required, 1-100 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.Description">
+            <summary>
+            Detailed task description (optional, max 500 characters)
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.DueDate">
+            <summary>
+            Optional due date
+            </summary>
+        </member>
+        <member name="P:TaskApi.Models.DTOs.UpdateTaskDto.IsComplete">
+            <summary>
+            Task completion status
+            </summary>
+        </member>
+    </members>
+</doc>
