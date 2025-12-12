@@ -1,90 +1,155 @@
-# Workshops Repository
+# Developer Workshops
 
-This repository contains workshop materials for learning and mastering AI-assisted development tools, with a focus on GitHub Copilot and rapid prototyping with AI.
+A collection of workshop materials designed for developers to learn modern development practices, AI-assisted coding, and rapid application prototyping.
 
-## Repository Structure
+## 🎓 Available Workshops
 
-### 📂 `github-copilot/`
+### 1. Mastering GitHub Copilot
 
-Workshop materials for mastering GitHub Copilot in software development.
+**Duration**: 4 hours  
+**Format**: Presentation + Hands-on Lab  
+**Target Audience**: Developers of all skill levels  
+**Tools Required**: VS Code with GitHub Copilot extension
 
-**Duration:** 4 hours (Presentation + Hands-on Lab)
+#### Overview
+This comprehensive workshop teaches developers how to effectively collaborate with GitHub Copilot to enhance productivity and code quality. Through a combination of theory and hands-on practice, participants learn to leverage AI-assisted coding tools professionally.
 
-**Contents:**
+#### Learning Objectives
+- Understand Large Language Models (LLMs) fundamentals, training, and limitations
+- Master GitHub Copilot's three interaction modes: Ask, Edit, and Agent
+- Learn context management techniques using reference syntax (#file, @workspace, etc.)
+- Customize Copilot behavior with custom instructions files
+- Apply AI-assisted refactoring to legacy code
 
-- **`docs/`** - Workshop documentation
-  - `workshop-structure.md` - Detailed 4-hour agenda covering LLMs, Copilot modes (Ask/Edit/Agent), context management, and fine-tuning
-  - `presentation.pdf` - Slide deck for the workshop
-- **`examples/`** - Templates and examples
-  - `copilot-instructions-template.md` - Custom instructions template for fine-tuning Copilot behavior
+#### Workshop Structure
 
-**Topics Covered:**
+**Part 1: Foundations (1h 30min)**
+- Introduction to LLMs: What they are, how they're trained, strengths and limitations
+- GitHub Copilot overview: History, available models (GPT-4o, Claude, Gemini), pricing tiers
+- Deep dive into Ask/Edit/Agent modes with live demonstrations
+- When to use which mode for maximum effectiveness
 
-- Introduction to Large Language Models (LLMs)
-- GitHub Copilot features and capabilities
-- Context management and reference syntax
-- Copilot modes: Ask, Edit, and Agent
-- Custom instructions and prompt engineering
-- Hands-on kata using the SupermarketReceipt-Refactoring-Kata
+**Part 2: Mastering Copilot (60min)**
+- Context is King: How Copilot uses context and best practices for better output
+- Reference syntax and custom instructions files
+- Fine-tuning: Prompt files, custom agents, and extensions ecosystem
+- Enterprise features and capabilities
 
----
+**Part 3: Hands-on Lab (1h 35min)**
+- Exercise 1: Code exploration using Ask mode to understand and identify code smells
+- Exercise 2: Test generation with Copilot, including approval testing setup
+- Exercise 3: Safe refactoring with Edit mode backed by comprehensive tests
+- Uses the [SupermarketReceipt-Refactoring-Kata](https://github.com/emilybache/SupermarketReceipt-Refactoring-Kata) repository
 
-### 📂 `rapid-prototyping/`
-
-Workshop materials for rapid API development using AI-assisted coding and specification-driven development.
-
-#### Subfolders
-
-**`prompts/`** - Curated prompts and spec-kit methodology
-
-- `presentation-prompts.md` - Example prompts demonstrating good vs. bad practices for API generation
-- `speckitcommands.md` - Commands for using the spec-kit methodology
-- **`spec-kit/`** - Specification templates for structured development
-  - `constitution-example.md` - Comprehensive project constitution defining tech stack, architecture patterns, API standards, and best practices for fullstack projects (.NET + React/TypeScript)
-  - `functional-description.md` - MVP functional specification for a Task Management API, designed as a 3-hour workshop exercise
-  - `demo-description.md` - Additional specification examples
-
-**`src/`** - Example implementations demonstrating AI-generated code
-  - **`task-simple/`** - Basic Node.js/Express task API (structure reference, files may not exist)
-    - Simple REST API implementation
-    - Express.js with basic routing
-    - Task controller and model examples
-  - **`task-elaborate/`** - Advanced .NET 9 task management API
-    - `.gitignore` - Standard .NET gitignore configuration
-    - **`TaskApi/`** - Full-featured ASP.NET Core Web API
-      - RESTful endpoints with pagination
-      - Entity Framework Core with DbContext
-      - DTOs for request/response handling
-      - OpenAPI/Swagger documentation
-      - Proper error handling and HTTP status codes
-      - Controllers, Models, and Data layers
-
-**`rapid-prototyping-workshop.pptx`** - Presentation slide deck
-
-**Key Concepts:**
-- Spec-Kit methodology: Using detailed specifications (constitution + functional description) to guide AI in generating production-quality code
-- Demonstrates the difference between vague prompts and well-structured specifications
-- Shows progressive complexity from simple Node.js API to enterprise .NET implementation
-- Emphasizes validation, error handling, documentation, and best practices
+#### Key Takeaways
+- Effective prompt engineering for AI coding assistants
+- Strategies for maintaining code quality while using AI tools
+- Best practices for context management in large codebases
+- Custom configuration patterns for team-wide consistency
 
 ---
 
-## Workshop Philosophy
+### 2. Rapid Prototyping with AI-Assisted Development
 
-These workshops teach developers how to:
-1. **Leverage AI effectively** - Understanding LLM capabilities and limitations
-2. **Provide better context** - Using reference syntax, custom instructions, and specifications
-3. **Structure projects properly** - Following architectural patterns and best practices
-4. **Generate production-quality code** - Moving beyond simple examples to real-world implementations
-5. **Maintain control** - Using AI as an assistant, not a replacement for engineering judgment
+**Duration**: 3-4 hours  
+**Format**: Workshop with progressive exercises  
+**Target Audience**: Developers familiar with REST APIs and modern web development  
+**Tools Required**: GitHub Copilot, .NET 8 SDK, Node.js 18+
 
-## Getting Started
+#### Overview
+Learn specification-first development where detailed requirements and architecture decisions are documented upfront, then implemented efficiently using AI assistance. This workshop emphasizes the power of well-structured specifications in guiding AI tools to generate production-quality code.
 
-Each workshop folder contains its own documentation and materials. Start by reviewing the relevant workshop structure document and presentation materials before diving into hands-on exercises.
+#### Learning Objectives
+- Master spec-driven development methodology
+- Write effective prompts for API and full-stack application generation
+- Implement complete REST APIs with authentication and validation
+- Apply architectural patterns consistently using project constitutions
+- Deliver working prototypes in hours instead of days
 
-## Prerequisites
+#### Core Concepts
 
-- Visual Studio Code
-- GitHub Copilot extension
-- Basic understanding of software development concepts
-- Familiarity with at least one programming language
+**Specification-First Approach**
+- Define comprehensive project constitutions covering architecture, coding standards, and patterns
+- Document functional specifications with detailed API contracts
+- Use specifications as living documentation and AI guidance
+
+**The SPEC-KIT Pattern**
+- **Constitution**: Project-wide standards defining architecture, tech stack, coding conventions, validation rules, and testing requirements
+- **Functional Description**: Detailed feature specifications with API endpoints, request/response examples, and business rules
+- **Progressive Implementation**: Start with 30-minute demos, scale to 3-hour full MVPs
+
+#### Workshop Exercises
+
+**Exercise 1: Prompt Engineering (30 minutes)**
+- Compare ineffective vs. effective prompts
+- Practice writing detailed API specifications
+- Generate a simple CRUD API with validation and OpenAPI documentation
+
+**Exercise 2: Project Constitution (45 minutes)**
+- Create a full-stack project constitution
+- Define backend standards (.NET 8, Entity Framework Core, FluentValidation)
+- Define frontend standards (React 18+, TypeScript, Tailwind CSS)
+- Implement consistent patterns across the stack
+
+**Exercise 3: Complete API Implementation (2-3 hours)**
+- Build a Task Management API from specification
+- Implement authentication with JWT tokens
+- Add authorization and user-specific data access
+- Generate comprehensive test coverage
+- Deploy with full OpenAPI documentation
+
+#### Technology Stack Examples
+
+**Backend**
+- .NET 8 LTS with ASP.NET Core Web API
+- Entity Framework Core with code-first migrations
+- FluentValidation for input validation
+- Repository and Unit of Work patterns
+- JWT Bearer authentication
+
+**Frontend**
+- React 18+ with TypeScript 5.x
+- Vite for build tooling
+- TanStack Query for server state
+- React Hook Form with Zod validation
+- Tailwind CSS with Tailwind UI components
+
+#### Key Takeaways
+- How to write specifications that produce production-ready code
+- Architectural patterns for maintainable full-stack applications
+- Validation strategies at multiple layers (API, business logic, data access)
+- Best practices for RESTful API design
+- Rapid iteration cycles with AI-assisted development
+
+## 🚀 Getting Started
+
+### Prerequisites
+- VS Code with GitHub Copilot extension
+- GitHub Copilot subscription (Individual, Business, Enterprise, or Education)
+- Node.js 18+ (for practical exercises)
+- .NET 8 SDK (for rapid prototyping exercises)
+
+### Using These Materials
+1. Choose the workshop track relevant to your learning goals
+2. Review the documentation in the corresponding folder
+3. Follow the structured agenda provided in each workshop
+4. Complete hands-on exercises at your own pace
+5. Use the provided templates and examples as reference material
+
+## 📖 Additional Resources
+
+- [SupermarketReceipt-Refactoring-Kata](https://github.com/emilybache/SupermarketReceipt-Refactoring-Kata) - Used in GitHub Copilot workshop exercises
+- GitHub Copilot Documentation
+- Spec-Kit patterns and best practices
+
+## 🤝 Contributing
+
+These workshops are maintained by G3L Consulting. For questions, improvements, or suggestions, please open an issue or submit a pull request.
+
+## 📝 License
+
+Workshop materials are provided for educational purposes.
+
+---
+
+**Last Updated**: December 2025
